@@ -1,0 +1,49 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Solo para saber si quien llama es un contacto (a los contactos nunca se les bloquea). -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <!--
+      NO se declara ningún intent-filter de DIAL / CALL ni InCallService,
+      así que es IMPOSIBLE que Android ofrezca esta app como app de Teléfono predeterminada.
+    -->
+
+    <application
+        android:name="${applicationName}"
+        android:label="Bloqueador Cobranza"
+        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="false">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Servicio de filtrado de llamadas: solo decide permitir / bloquear. -->
+        <service
+            android:name=".BlockerScreeningService"
+            android:exported="true"
+            android:permission="android.permission.BIND_SCREENING_SERVICE">
+            <intent-filter>
+                <action android:name="android.telecom.CallScreeningService" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+</manifest>
