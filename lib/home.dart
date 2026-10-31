@@ -718,16 +718,26 @@ class _HistoryTabState extends State<HistoryTab> {
     final children = <Widget>[
       Row(
         children: [
-          for (final (i, label) in ['Todas', 'Bloqueadas', 'Permitidas'].indexed)
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: ChoiceChip(
-                label: Text(label),
-                selected: _filter == i,
-                onSelected: (_) => setState(() => _filter = i),
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  for (final (i, label)
+                      in ['Todas', 'Bloqueadas', 'Permitidas'].indexed)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ChoiceChip(
+                        label: Text(label),
+                        selected: _filter == i,
+                        showCheckmark: false,
+                        onSelected: (_) => setState(() => _filter = i),
+                      ),
+                    ),
+                ],
               ),
             ),
-          const Spacer(),
+          ),
           if (all.isNotEmpty)
             IconButton(
               tooltip: 'Borrar historial',
