@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'bridge.dart';
 import 'privacy.dart';
+import 'theme.dart';
 
 /// Datos de BrainCode México (autores de la app).
 class BrainCode {

@@ -16,7 +16,6 @@ class ShieldArt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
     return Container(
       width: size,
       height: size,
