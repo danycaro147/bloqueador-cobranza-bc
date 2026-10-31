@@ -1,6 +1,6 @@
 # Bloqueador Cobranza (Flutter · Android)
 
-Una app de **BrainCode México** — https://braincode.com.mx
+Una app de **BrainCode México Tech** — https://braincode.com.mx
 
 Bloquea llamadas entrantes de cobranza, spam y números ocultos. **Solo filtra llamadas.**
 Nunca reemplaza tu app de Teléfono: usa el rol de Android `ROLE_CALL_SCREENING`

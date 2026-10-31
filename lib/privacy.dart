@@ -31,7 +31,7 @@ const privacySections = [
   ),
   (
     'Contacto',
-    'BrainCode México · contacto@braincode.com.mx · braincode.com.mx'
+    'BrainCode México Tech · contacto@braincode.com.mx · braincode.com.mx'
   ),
 ];
 

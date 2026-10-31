@@ -4,19 +4,15 @@ import 'bridge.dart';
 import 'privacy.dart';
 import 'theme.dart';
 
-/// Datos de BrainCode México (autores de la app).
+/// Datos de BrainCode México Tech (autores de la app).
 class BrainCode {
-  static const name = 'BrainCode México';
+  static const name = 'BrainCode México Tech';
   static const tagline = 'Tecnología que mueve a tu empresa.';
   static const email = 'contacto@braincode.com.mx';
 
   static String site(String campaign) =>
       'https://braincode.com.mx/?utm_source=bloqueador_cobranza'
       '&utm_medium=app&utm_campaign=$campaign';
-
-  static const whatsapp = 'https://wa.me/525521088557?text='
-      'Hola%20BrainCode%2C%20vengo%20de%20la%20app%20Bloqueador%20Cobranza%20'
-      'y%20me%20interesa%20una%20soluci%C3%B3n%20para%20mi%20empresa.';
 
   static const mail = 'mailto:contacto@braincode.com.mx'
       '?subject=Contacto%20desde%20Bloqueador%20Cobranza';
@@ -55,11 +51,11 @@ class BrainCodeMark extends StatelessWidget {
         color: color ?? Theme.of(context).colorScheme.onSurface,
         colorBlendMode: BlendMode.srcIn,
         filterQuality: FilterQuality.medium,
-        semanticLabel: 'BrainCode México',
+        semanticLabel: 'BrainCode México Tech',
       );
 }
 
-/// Firma discreta "Una app de BrainCode México". Al tocarla abre "Acerca de".
+/// Firma discreta "Una app de BrainCode México Tech". Al tocarla abre "Acerca de".
 class MadeByBrainCode extends StatelessWidget {
   const MadeByBrainCode({super.key});
 
@@ -135,7 +131,7 @@ class BrainCodePromoCard extends StatelessWidget {
                               ?.copyWith(fontWeight: FontWeight.w700)),
                       const SizedBox(height: 4),
                       Text(
-                        'En BrainCode México creamos apps móviles, software a '
+                        'En BrainCode México Tech creamos apps móviles, software a '
                         'la medida y soluciones con Odoo ERP.',
                         style: tt.bodyMedium
                             ?.copyWith(color: cs.onSurfaceVariant, height: 1.35),
@@ -243,12 +239,6 @@ class AboutPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             OutlinedButton.icon(
-              onPressed: () => BrainCode.open(context, BrainCode.whatsapp),
-              icon: const Icon(Icons.chat_rounded),
-              label: const Text('Escríbenos por WhatsApp'),
-            ),
-            const SizedBox(height: 4),
-            TextButton.icon(
               onPressed: () => BrainCode.open(context, BrainCode.mail),
               icon: const Icon(Icons.mail_outline_rounded),
               label: const Text(BrainCode.email),

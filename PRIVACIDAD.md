@@ -1,6 +1,6 @@
 # Política de privacidad — Bloqueador Cobranza
 
-**Responsable:** BrainCode México · contacto@braincode.com.mx · https://braincode.com.mx
+**Responsable:** BrainCode México Tech · contacto@braincode.com.mx · https://braincode.com.mx
 **Última actualización:** 30 de octubre de 2026
 
 ## Qué hace la app
@@ -32,4 +32,4 @@ La app no está dirigida a menores de 13 años y no recopila datos personales de
 Si esta política cambia, se actualizará esta página y la fecha de arriba.
 
 ## Contacto
-contacto@braincode.com.mx · WhatsApp +52 55 2108 8557
+contacto@braincode.com.mx · https://braincode.com.mx

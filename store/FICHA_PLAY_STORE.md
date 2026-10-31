@@ -30,7 +30,7 @@ nunca salen de tu teléfono. Sin anuncios de terceros ni registros.
 
 Requiere Android 10 o superior.
 
-Hecha en México por BrainCode México — Tecnología que mueve a tu empresa.
+Hecha en México por BrainCode México Tech — Tecnología que mueve a tu empresa.
 ¿Tu empresa necesita una app? braincode.com.mx
 
 ## Recursos gráficos (carpeta store/)
