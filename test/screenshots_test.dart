@@ -8,6 +8,7 @@ import 'package:bloqueador_cobranza/home.dart';
 import 'package:bloqueador_cobranza/main.dart';
 import 'package:bloqueador_cobranza/onboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -94,7 +95,8 @@ void main() {
 
   Future<void> shoot(WidgetTester tester, String name,
       Widget Function(BlockerState s, Future<void> Function() r) screen,
-      {Brightness b = Brightness.light}) async {
+      {Brightness b = Brightness.light, String? scrollToText}) async {
+    debugDisableShadows = false; // sombras reales en las capturas
     tester.view.physicalSize = const Size(1080, 1920);
     tester.view.devicePixelRatio = 2.625;
     tester.platformDispatcher.platformBrightnessTestValue = b;
@@ -109,8 +111,14 @@ void main() {
           const AssetImage('assets/images/braincode_isotipo.png'), ctx);
     });
     await tester.pumpAndSettle();
+    if (scrollToText != null) {
+      await tester.scrollUntilVisible(find.text(scrollToText), 300,
+          scrollable: find.byType(Scrollable).first);
+      await tester.pumpAndSettle();
+    }
     await expectLater(find.byType(MaterialApp),
         matchesGoldenFile('../store/screenshots/$name.png'));
+    debugDisableShadows = true;
   }
 
   testWidgets('01 bienvenida', (t) async {
@@ -158,5 +166,11 @@ void main() {
     await shoot(t, '07_proteccion_oscuro',
         (s, r) => HomePage(state: s, onRefresh: r, onReplayGuide: () {}),
         b: Brightness.dark);
+  });
+
+  testWidgets('08 tarjeta braincode', (t) async {
+    await shoot(t, '08_tarjeta_braincode',
+        (s, r) => HomePage(state: s, onRefresh: r, onReplayGuide: () {}),
+        scrollToText: 'Conocer BrainCode');
   });
 }

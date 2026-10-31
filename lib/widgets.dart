@@ -30,9 +30,10 @@ class ShieldArt extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-              color: (ok ? AppColors.success : AppColors.brand).withAlpha(60),
-              blurRadius: 30,
-              offset: const Offset(0, 12)),
+              color: (ok ? AppColors.success : AppColors.brand).withAlpha(50),
+              blurRadius: 32,
+              spreadRadius: -4,
+              offset: const Offset(0, 14)),
         ],
       ),
       child: Stack(
