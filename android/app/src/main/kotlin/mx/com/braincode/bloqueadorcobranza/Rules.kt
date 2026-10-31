@@ -1,4 +1,4 @@
-package com.danycaro.bloqueadorcobranza
+package mx.com.braincode.bloqueadorcobranza
 
 import android.Manifest
 import android.content.Context

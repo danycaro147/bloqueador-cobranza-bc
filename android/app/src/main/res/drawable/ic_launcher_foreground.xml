@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Teléfono con una diagonal de "prohibido" -->
+<!-- Escudo + auricular tachado. Todo dentro de la zona segura (66dp). -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp" android:height="108dp"
     android:viewportWidth="108" android:viewportHeight="108">
-    <group android:translateX="30" android:translateY="30" android:scaleX="2" android:scaleY="2">
-        <path android:fillColor="#FFFFFF"
-            android:pathData="M6.62,10.79c1.44,2.83 3.76,5.14 6.59,6.59l2.2,-2.2c0.27,-0.27 0.67,-0.36 1.02,-0.24 1.12,0.37 2.33,0.57 3.57,0.57 0.55,0 1,0.45 1,1V20c0,0.55 -0.45,1 -1,1 -9.39,0 -17,-7.61 -17,-17 0,-0.55 0.45,-1 1,-1h3.5c0.55,0 1,0.45 1,1 0,1.25 0.2,2.45 0.57,3.57 0.11,0.35 0.03,0.74 -0.25,1.02l-2.2,2.2z" />
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M54,27 L76,35 V53 C76,67 66.5,77.5 54,82 C41.5,77.5 32,67 32,53 V35 Z" />
+    <group android:translateX="38.4" android:translateY="39.4" android:scaleX="1.3" android:scaleY="1.3">
+        <path android:fillColor="#1D3768" android:pathData="M6.62,10.79c1.44,2.83 3.76,5.14 6.59,6.59l2.2,-2.2c0.27,-0.27 0.67,-0.36 1.02,-0.24 1.12,0.37 2.33,0.57 3.57,0.57 0.55,0 1,0.45 1,1V20c0,0.55 -0.45,1 -1,1 -9.39,0 -17,-7.61 -17,-17 0,-0.55 0.45,-1 1,-1h3.5c0.55,0 1,0.45 1,1 0,1.25 0.2,2.45 0.57,3.57 0.11,0.35 0.03,0.74 -0.25,1.02l-2.2,2.2z" />
     </group>
-    <path android:strokeColor="#FF5A5A" android:strokeWidth="6" android:strokeLineCap="round"
-        android:pathData="M30,30 L78,78" />
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="7.5" android:strokeLineCap="round"
+        android:pathData="M64,42 L44,66" />
+    <path android:strokeColor="#E5484D" android:strokeWidth="3.6" android:strokeLineCap="round"
+        android:pathData="M64,42 L44,66" />
 </vector>

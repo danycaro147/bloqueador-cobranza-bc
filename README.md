@@ -1,5 +1,7 @@
 # Bloqueador Cobranza (Flutter · Android)
 
+Una app de **BrainCode México** — https://braincode.com.mx
+
 Bloquea llamadas entrantes de cobranza, spam y números ocultos. **Solo filtra llamadas.**
 Nunca reemplaza tu app de Teléfono: usa el rol de Android `ROLE_CALL_SCREENING`
 (filtro de llamadas), no `ROLE_DIALER`. Las llamadas permitidas suenan y se contestan
@@ -13,7 +15,7 @@ en tu app nativa de siempre.
 ```bash
 cd bloqueador_cobranza
 flutter pub get
-flutter build apk --release
+flutter build apk --release        # o appbundle para Play Store
 # APK: build/app/outputs/flutter-apk/app-release.apk
 ```
 O con el teléfono conectado por USB (depuración USB activa): `flutter run --release`
@@ -22,13 +24,14 @@ O con el teléfono conectado por USB (depuración USB activa): `flutter run --re
 > Si falta `gradlew`, Flutter lo genera solo en la primera compilación.
 
 ## Primer uso
-1. Abre la app → **Activar filtro** → elige *Bloqueador Cobranza* como app de filtro
-   de llamadas/spam. (Es un diálogo distinto al de "app de teléfono predeterminada").
-2. **Dar permiso** de contactos (solo para no bloquear nunca a tus contactos).
-3. Listo. Las opciones por defecto:
-   - Bloquear desconocidos: **sí** (los despachos cambian de número todo el tiempo)
-   - Dejar pasar si un desconocido llama 2 veces en 3 minutos: **sí** (emergencias)
-   - Bloquear ocultos: **sí** · Bloquear falsificados: **sí**
+La app abre una guía de 3 pasos: activar el filtro de llamadas, permitir contactos y
+elegir el nivel (Recomendado, Estricto o Solo mi lista).
+
+## Play Store
+- Cada push a `main` compila en GitHub Actions y publica en *Releases* el `.apk` y el `.aab`.
+- Para firmar con la llave de Play, agrega estos secretos en GitHub (Settings → Secrets → Actions):
+  `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`.
+- Ficha, textos y gráficos: carpeta `store/`. Política de privacidad: `PRIVACIDAD.md`.
 
 ## Cómo decide
 1. Protección apagada → pasa
@@ -47,7 +50,9 @@ teléfono y en el Historial de la app, desde donde puedes bloquear o permitir el
 - `android/.../Rules.kt` – las reglas de bloqueo
 - `android/.../BlockerStore.kt` – configuración, listas e historial (nativo)
 - `android/.../MainActivity.kt` – puente con Flutter y solicitud del rol
-- `lib/main.dart` – interfaz (Protección, Listas, Historial)
+- `lib/onboarding.dart` – guía de configuración
+- `lib/home.dart` – pantallas Protección, Listas e Historial
+- `lib/braincode.dart` – Acerca de, tarjeta y firma de BrainCode
 
 ## Extra (México)
 Para reducir también la publicidad, registra tu número en el REPEP de PROFECO

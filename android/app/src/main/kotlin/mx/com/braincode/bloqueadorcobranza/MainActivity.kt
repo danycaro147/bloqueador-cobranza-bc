@@ -1,7 +1,9 @@
-package com.danycaro.bloqueadorcobranza
+package mx.com.braincode.bloqueadorcobranza
 
 import android.Manifest
 import android.app.role.RoleManager
+import android.content.Intent
+import android.net.Uri
 import android.content.pm.PackageManager
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -21,6 +23,10 @@ class MainActivity : FlutterActivity() {
                         "getState" -> result.success(
                             mapOf(
                                 "roleHeld" to isScreeningRoleHeld(),
+                                "roleAvailable" to isScreeningRoleAvailable(),
+                                "onboardingDone" to store.getBool("onboardingDone"),
+                                "promoHiddenUntil" to store.getLong("promoHiddenUntil"),
+                                "appVersion" to appVersion(),
                                 "contactsGranted" to (checkSelfPermission(Manifest.permission.READ_CONTACTS)
                                     == PackageManager.PERMISSION_GRANTED),
                                 "settings" to store.settings(),
@@ -45,6 +51,27 @@ class MainActivity : FlutterActivity() {
                             store.setList(call.argument<String>("name")!!, call.argument<List<String>>("items")!!)
                             result.success(null)
                         }
+                        "setLong" -> {
+                            val v = call.argument<Number>("value")!!.toLong()
+                            store.setLong(call.argument<String>("key")!!, v)
+                            result.success(null)
+                        }
+                        "openUrl" -> {
+                            val url = call.argument<String>("url")!!
+                            val ok = try {
+                                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                                true
+                            } catch (e: Exception) {
+                                false
+                            }
+                            result.success(ok)
+                        }
+                        "openAppSettings" -> {
+                            startActivity(Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                Uri.fromParts("package", packageName, null)))
+                            result.success(null)
+                        }
                         "clearLog" -> {
                             store.clearLog()
                             result.success(null)
@@ -55,6 +82,17 @@ class MainActivity : FlutterActivity() {
                     result.error("ERR", e.message, null)
                 }
             }
+    }
+
+    private fun isScreeningRoleAvailable(): Boolean {
+        val rm = getSystemService(RoleManager::class.java) ?: return false
+        return rm.isRoleAvailable(RoleManager.ROLE_CALL_SCREENING)
+    }
+
+    private fun appVersion(): String = try {
+        packageManager.getPackageInfo(packageName, 0).versionName ?: ""
+    } catch (e: Exception) {
+        ""
     }
 
     private fun isScreeningRoleHeld(): Boolean {

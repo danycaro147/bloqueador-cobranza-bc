@@ -4,8 +4,17 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+// Firma para Play Store: si existe android/key.properties (o lo crea CI desde
+// secretos de GitHub), se usa la llave de subida; si no, la de depuración.
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file("key.properties")
+def hasReleaseKey = keystorePropertiesFile.exists()
+if (hasReleaseKey) {
+    keystorePropertiesFile.withInputStream { keystoreProperties.load(it) }
+}
+
 android {
-    namespace = "com.danycaro.bloqueadorcobranza"
+    namespace = "mx.com.braincode.bloqueadorcobranza"
     compileSdk = flutter.compileSdkVersion
 
     compileOptions {
@@ -18,7 +27,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.danycaro.bloqueadorcobranza"
+        applicationId = "mx.com.braincode.bloqueadorcobranza"
         // Android 10+: necesario para el rol de filtro de llamadas (RoleManager).
         minSdk = 29
         targetSdk = flutter.targetSdkVersion
@@ -26,10 +35,20 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        if (hasReleaseKey) {
+            release {
+                keyAlias = keystoreProperties["keyAlias"]
+                keyPassword = keystoreProperties["keyPassword"]
+                storeFile = rootProject.file(keystoreProperties["storeFile"])
+                storePassword = keystoreProperties["storePassword"]
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // Firma de depuración para que "flutter build apk" funcione sin configurar llaves.
-            signingConfig = signingConfigs.debug
+            signingConfig = hasReleaseKey ? signingConfigs.release : signingConfigs.debug
         }
     }
 }

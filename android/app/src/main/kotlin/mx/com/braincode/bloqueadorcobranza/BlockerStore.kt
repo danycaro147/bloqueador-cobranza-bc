@@ -1,4 +1,4 @@
-package com.danycaro.bloqueadorcobranza
+package mx.com.braincode.bloqueadorcobranza
 
 import android.content.Context
 import org.json.JSONArray
@@ -42,6 +42,12 @@ class BlockerStore(context: Context) {
     }
 
     fun settings(): Map<String, Boolean> = DEFAULTS.keys.associateWith { getBool(it) }
+
+    fun getLong(key: String): Long = prefs.getLong(key, 0L)
+
+    fun setLong(key: String, value: Long) {
+        prefs.edit().putLong(key, value).apply()
+    }
 
     fun getList(name: String): List<String> {
         val raw = prefs.getString(name, null) ?: return emptyList()
